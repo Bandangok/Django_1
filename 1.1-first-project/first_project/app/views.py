@@ -30,6 +30,7 @@ def time_view(request):
 
 def workdir_view(request):
     file = []
+    # rez = sorted(os.listdir(".\\first_project"))
     rez = sorted(os.listdir("."))
     for n, item in enumerate(rez):
         filename = (n + 1, item)
