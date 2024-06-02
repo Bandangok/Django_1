@@ -30,32 +30,35 @@ DATA = {
 #   }
 # }
 
-def omlet(request):
-    amount = int(request.GET.get('servings', 1))
-    products = DATA['omlet']
-    context = {
-      'recipe': {}
-    }
-    for product, account in products.items():
-        context['recipe'][product] = amount * account
-    return render(request, 'calculator/index.html', context)
+#
 
-def pasta(request):
-    amount = int(request.GET.get('servings', 1))
-    products = DATA['pasta']
-    context = {
-      'recipe': {}
-    }
-    for product, account in products.items():
-        context['recipe'][product] = amount * account
-    return render(request, 'calculator/index.html', context)
+def dish_view(request, dish):
+    if dish == 'omlet':
+        amount = int(request.GET.get('servings', 1))
+        products = DATA['omlet']
+        context = {
+              'recipe': {}
+            }
+        for product, account in products.items():
+            context['recipe'][product] = amount * account
+        return render(request, 'calculator/index.html', context)
 
-def buter(request):
-    amount = int(request.GET.get('servings', 1))
-    products = DATA['buter']
-    context = {
-      'recipe': {}
-    }
-    for product, account in products.items():
-        context['recipe'][product] = amount * account
-    return render(request, 'calculator/index.html', context)
+    if dish == 'buter':
+        amount = int(request.GET.get('servings', 1))
+        products = DATA['buter']
+        context = {
+              'recipe': {}
+            }
+        for product, account in products.items():
+            context['recipe'][product] = amount * account
+        return render(request, 'calculator/index.html', context)
+
+    if dish == 'pasta':
+        amount = int(request.GET.get('servings', 1))
+        products = DATA['pasta']
+        context = {
+              'recipe': {}
+            }
+        for product, account in products.items():
+            context['recipe'][product] = amount * account
+        return render(request, 'calculator/index.html', context)
