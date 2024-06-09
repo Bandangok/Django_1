@@ -9,9 +9,9 @@ class Phone(models.Model):
     image = models.URLField()
     release_date = models.DateField()
     lte_exists = models.BooleanField()
-    slug = models.SlugField(null=True)
-
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(self.name)
-        return super().save(*args, **kwargs) - models
+    slug = models.SlugField(null=False)
+    #
+    # def save(self, *args, **kwargs):
+    #     if not self.slug:
+    #         self.slug = slugify(self.name)
+    #     return super().save(*args, **kwargs)

@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 from phones.models import Phone
@@ -37,3 +38,9 @@ def show_product(request, slug):
     phone = Phone.objects.filter(slug__contains=slug).first()
     context = {'phones': phone}
     return render(request, template, context)
+
+
+def list_person(request):
+    phone_objects = Phone.objects.all()
+    phones = [f'{p.id}, {p.name}, {p.price}, {p.image}, {p.release_date}, {p.lte_exists}, {p.slug}' for p in phone_objects]
+    return HttpResponse('<br>'.join(phones))
