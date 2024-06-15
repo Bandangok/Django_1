@@ -6,12 +6,7 @@ class Phone(models.Model):
     id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=50)
     price = models.FloatField()
-    image = models.URLField()
+    image = models.ImageField()
     release_date = models.DateField()
     lte_exists = models.BooleanField()
-    slug = models.SlugField(null=False)
-    #
-    # def save(self, *args, **kwargs):
-    #     if not self.slug:
-    #         self.slug = slugify(self.name)
-    #     return super().save(*args, **kwargs)
+    slug = models.SlugField(null=True)
