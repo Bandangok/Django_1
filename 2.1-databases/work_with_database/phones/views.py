@@ -32,15 +32,24 @@ def show_catalog(request):
     return render(request, template, context)
 
 
-def show_product(request, slug):
-
-    template = 'product.html'
-    phone = Phone.objects.filter(slug__contains=slug).first()
-    context = {'phones': phone}
-    return render(request, template, context)
+# def show_product(request, slug):
+#
+#     template = 'product.html'
+#     phone = Phone.objects.filter(slug__contains=slug).first()
+#     context = {'phones': phone}
+#     return render(request, template, context)
 
 
 def list_person(request):
     phone_objects = Phone.objects.all()
     phones = [f'{p.id}, {p.name}, {p.price}, {p.image}, {p.release_date}, {p.lte_exists}, {p.slug}' for p in phone_objects]
     return HttpResponse('<br>'.join(phones))
+
+def show_product(request, slug):
+    template = 'product.html'
+    context = {}
+    phone_objects = Phone.objects.all()
+    for phone in phone_objects:
+        if phone.slug == slug:
+            context['phone'] = phone
+    return render(request, template, context)
